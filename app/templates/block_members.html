@@ -1,0 +1,36 @@
+{% block group_members %}
+<div class="col-md-3">
+	<div class="row" style="display: block;">
+        <div class="content-box-large">
+        	<div class="panel panel-default">
+                <div class="panel-heading">
+                	<h3>Members of {{ session['group'] }} : </h3>
+                </div>
+                <div class="panel-body">
+					<ul>
+                	{% for user,user_id in members.items() %}
+					<h4><b>
+					    {% if user != 'admin' %}
+					    <div class="col-md-8">
+							<li> {{ user }}</li>
+						</div>
+						{% if session['username'] == 'admin' %}
+						<div class="col-md-4">
+							<form action = "/delete_user" method="post" id="form-group" >
+								<input type="hidden" class="form-control" name = "remove_user" value = {{user}} />
+								<input type="hidden" class="form-control" name = "remove_user_id" value = {{user_id}} />
+								<button type="submit" class="btn btn-danger ">Remove</button>
+							</form>
+						</div>
+						{% endif %}
+					</b></h4>
+						{% endif %}
+                	{% endfor %}
+						</ul>
+
+                </div>
+            </div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+    <title>Polling System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- styles -->
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+  	<script>
+	$(document).ready(function(){
+		$("#error-msg").fadeOut(3000);
+	});
+	</script>
+  	</head>
+
+
+  <body class="login-bg" style="background:url('https://image.freepik.com/free-vector/abstract-background-with-a-watercolor-texture_1048-2144.jpg');">
+  	<div class="header">
+	     <div class="container">
+	        <div class="row">
+	           <div class="col-md-12">
+	              <!-- Logo -->
+	              <div class="logo">
+	                 <h1><a href="{{ url_for('index') }}">Polling System</a></h1>
+	              </div>
+	           </div>
+	        </div>
+	     </div>
+	</div>
+
+	<div class="page-content container">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<div class="login-wrapper" style="background-color:red">
+					 <h3><span id="error-msg" class="label label-success">{{ error_msg }}</span></h3>
+			        <div class="box">
+			            <div class="content-wrap">
+			                <h6>Sign In</h6>
+			            <form action="/login" method="POST">
+			                <input class="form-control" type="text" placeholder="Username" name="username" required>
+			                <input class="form-control" type="password" placeholder="Password" name="password" required>
+			                <button class="btn btn-primary signup" type="submit">Login</button>
+			                <a href="{{ url_for('signup') }}" class="btn btn-primary signup">Sign Up</a>
+		            	</form>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+  </body>
+</html>

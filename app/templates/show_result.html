@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+		  <div class="col-md-7">
+	  			<div class="row" id ="polls-row">
+	  				{% block polls %}
+			  		{% for poll in all_polls %}
+					{% if poll != 'members'%}
+	  				<div class="col-md-12">
+	  					<div class="content-box-large">
+	  						<div class="panel panel-default">
+			  				<div class="panel-heading">
+					            <h4>{{ all_polls[poll]['question'] }}</h4>
+					        </div>
+					        <div class="panel-body">
+					        <div class="alert">You have voted</div>
+				  				<form role="form" id=poll-form>
+			  						<input type = "hidden" name = "poll-id" value = {{poll}} />
+                                    {% set arr =[] %}
+                                    {% for choice in all_polls[poll]['choices'] %}
+                                    {% if arr.append(choice.votes)== 'None' %}
+                                    {{ '' }}
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% for choice in all_polls[poll]['choices'] %}
+                                        {% set mx = arr|max %}
+                                        {% if choice.votes == mx %}
+                                    <div ><b>Answer : </b><label>
+                                        {{ choice.string }}
+                                        <span class="badge">{{choice.votes}}</span></label></div>
+                                        {% endif %}
+			  						{% endfor %}
+
+			  					</form>
+			  				</div>
+			  			</div>
+			  			</div>
+	  				</div>
+					{% endif %}
+	  				{% endfor %}
+	  				{% endblock %}
+	  			</div>
+	  		<!--  Page content -->
+		  </div>
+{% endblock %}

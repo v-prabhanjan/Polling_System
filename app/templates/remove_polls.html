@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+		  <div class="col-md-7">
+	  			<div class="row" id ="del-polls-row">
+					<div id="alert-g2" class="alert">Poll deleted</div>
+	  				{% block polls %}
+			  		{% for poll in all_polls %}
+					{% if poll != 'members'%}
+	  				<div class="col-md-12">
+
+	  					<div class="content-box-large">
+	  						<div class="panel panel-default">
+			  				<div class="panel-heading">
+								<form action = "/delete_polls" method="post" id="form-group" >
+									<h4>{{ all_polls[poll]['question'] }} </h4>
+									<input type="hidden" class="form-control" name = "remove_poll" value = {{(poll)}} />
+									<button type="submit" id="rmv_id"  class="btn btn-danger ">Remove</button>
+								</form>
+					        </div>
+
+			  			   </div>
+			  			</div>
+	  				</div>
+					{% endif %}
+	  				{% endfor %}
+	  				{% endblock %}
+	  			</div>
+	  		<!--  Page content -->
+		  </div>
+{% endblock %}
